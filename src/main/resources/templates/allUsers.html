@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-around; /* Равномерно распределяем кнопки */
+        }
+    </style>
+</head>
+<body>
+<h2>User List</h2>
+
+<table >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td>
+            <div class="button-container">
+                <form th:action="@{/editUser/{id}(id=${user.id})}" method="get">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+                <form th:action="@{delete/{id}(id=${user.id})}" method="post">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/add}" class="btn btn-success">Add User</a>
+
+</body>
+</html>
