@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.User;
-import com.example.demo.service.UserServis;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private final UserServis userServis;
+    private final UserService userServis;
 
     @Autowired
-    public UserController(UserServis userServis) {
+    public UserController(UserService userServis) {
         this.userServis = userServis;
     }
 
@@ -35,6 +35,7 @@ public class UserController {
         userServis.addUser(user);
         return "redirect:/allUsers";
     }
+
     @PostMapping("delete/{id}")
     public String deleteById(@PathVariable("id") Long id) {
         userServis.removeUserById(id);

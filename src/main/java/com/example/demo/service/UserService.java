@@ -4,7 +4,7 @@ import com.example.demo.model.User;
 
 import java.util.List;
 
-public interface UserServis {
+public interface UserService {
     public void addUser(User user);
     public List<User> getAllUsers();
     public void removeUserById(Long id);
