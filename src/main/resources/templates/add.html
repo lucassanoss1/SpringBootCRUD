@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Edit User</title>
+  <title>Create User</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-5">
-  <h2>Edit User</h2>
+  <h2>Create User</h2>
   <form th:action="@{/add}" method="post" th:object="${user}">
     <input type="hidden" th:field="*{id}" />
 

@@ -50,7 +50,7 @@ public class UserController {
 
     @PostMapping("/editUser")
     public String editUser(User user){
-        userService.addUser(user);
+        userService.updateUser(user);
         return "redirect:/allUsers";
     }
 }
