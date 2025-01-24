@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private final UserService userServis;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userServis) {
-        this.userServis = userServis;
+        this.userService = userServis;
     }
 
     @GetMapping("/allUsers")
     public String getAllUser(Model model) {
-        model.addAttribute("users", userServis.getAllUsers());
+        model.addAttribute("users", userService.getAllUsers());
         return "/allUsers";
     }
 
@@ -32,25 +32,25 @@ public class UserController {
 
     @PostMapping("/add")
     public String addUser(User user){
-        userServis.addUser(user);
+        userService.addUser(user);
         return "redirect:/allUsers";
     }
 
     @PostMapping("delete/{id}")
     public String deleteById(@PathVariable("id") Long id) {
-        userServis.removeUserById(id);
+        userService.removeUserById(id);
         return "redirect:/allUsers";
     }
 
     @GetMapping("/editUser/{id}")
     public String editUserForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userServis.findUserById(id));
+        model.addAttribute("user", userService.findUserById(id));
         return "editUser";
     }
 
     @PostMapping("/editUser")
     public String editUser(User user){
-        userServis.addUser(user);
+        userService.addUser(user);
         return "redirect:/allUsers";
     }
 }
